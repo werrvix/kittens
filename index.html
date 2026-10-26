@@ -28,12 +28,12 @@ header a{color:#8ec5ff;font-size:14px;margin-left:10px}
 <p class="hint">Hint: try typing a single quote ' in the search (or in the ?q= part of the address)</p>
 <div id="grid" class="grid"><p class="msg">Loading...</p></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/dist/sql-wasm.js"></script>
+<script src="lib/sql-wasm.js"></script>
 <script>
 var MAX_MEMES = 40;
 var db = null;
 
-initSqlJs({ locateFile: function(f){ return "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/dist/" + f; } })
+initSqlJs({ locateFile: function(f){ return "lib/" + f; } })
 .then(function(SQL){
   db = new SQL.Database();
   db.run("CREATE TABLE memes(title TEXT, img TEXT, visible INT)");
