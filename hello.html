@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Greeting</title>
+<style>
+body{font-family:sans-serif;max-width:600px;margin:50px auto;padding:0 16px}
+input{padding:8px;width:220px}
+.hint{color:#888;margin-top:30px}
+a{color:#2563eb}
+</style>
+</head>
+<body>
+<p><a href="index.html">&larr; back to Kittens</a></p>
+<h2>Greeting</h2>
+<form method="GET">
+  <input name="name" placeholder="Your name">
+  <button>Go</button>
+</form>
+<div id="out"></div>
+
+<script>
+var flag = "kpi{xss_is_dangerous}";
+var name = new URLSearchParams(location.search).get("name");
+if (name){
+  document.write("<h3>Hello, " + name + "!</h3>");
+}
+</script>
+
+<p class="hint">Task 2: this page shows your name without any protection.
+Try putting a script in the name (in the ?name= part of the address).
+There is a secret variable called <code>flag</code> on this page.</p>
+</body>
+</html>
