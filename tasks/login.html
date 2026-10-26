@@ -1,20 +1,20 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Task 2 — Login</title>
+<title>Login</title>
 <style>body{font-family:sans-serif;max-width:420px;margin:50px auto;padding:0 16px}
 input{display:block;width:100%;padding:10px;margin:8px 0;box-sizing:border-box}
 button{padding:10px 20px}a{color:#2563eb}.msg{margin-top:14px}code{background:#eee;padding:1px 4px}</style>
 </head><body>
-<p><a href="index.html">&larr; menu</a></p>
-<h2>🔐 Admin login</h2>
+<p><a href="../index.html">&larr; home</a></p>
+<h2>Admin login</h2>
 <input id="u" placeholder="Username"><input id="p" type="text" placeholder="Password">
 <button onclick="go()">Log in</button><div id="msg" class="msg"></div>
 <p style="color:#888;margin-top:30px">Hint: the password is secret, but the query is not safe. Try a single quote ' in the username.</p>
-<script src="lib/sql-wasm.js"></script>
+<script src="../lib/sql-wasm.js"></script>
 <script>
 var db=null;
-initSqlJs({locateFile:function(f){return "lib/"+f;}}).then(function(SQL){
+initSqlJs({locateFile:function(f){return "../lib/"+f;}}).then(function(SQL){
   db=new SQL.Database();
   db.run("CREATE TABLE users(user TEXT,pass TEXT)");
   db.run("INSERT INTO users VALUES('admin','S3cr3t_p@ss_9142')");

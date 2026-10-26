@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Task 3 — Shop</title>
+<title>Shop</title>
 <style>body{font-family:sans-serif;max-width:600px;margin:40px auto;padding:0 16px}
 input{padding:10px;width:60%}button{padding:10px 18px}
 table{border-collapse:collapse;margin-top:16px;width:100%}
 td,th{border:1px solid #ccc;padding:8px;text-align:left}a{color:#2563eb}code{background:#eee;padding:1px 4px}</style>
 </head><body>
-<p><a href="index.html">&larr; menu</a></p>
-<h2>🛒 Cat shop — product search</h2>
+<p><a href="../index.html">&larr; home</a></p>
+<h2>Cat shop — product search</h2>
 <input id="q" placeholder="Product name..." onkeydown="if(event.key==='Enter')go()"><button onclick="go()">Search</button>
 <div id="out"></div>
 <p style="color:#888;margin-top:30px">Hint: this query returns <b>2 columns</b> (name, price). There is another table <code>secret</code> with a column <code>flag</code>. Use <code>UNION SELECT</code>.</p>
-<script src="lib/sql-wasm.js"></script>
+<script src="../lib/sql-wasm.js"></script>
 <script>
 var db=null;
-initSqlJs({locateFile:function(f){return "lib/"+f;}}).then(function(SQL){
+initSqlJs({locateFile:function(f){return "../lib/"+f;}}).then(function(SQL){
   db=new SQL.Database();
   db.run("CREATE TABLE products(name TEXT,price TEXT)");
   db.run("INSERT INTO products VALUES('Cat food','10 UAH')");
