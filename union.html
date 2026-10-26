@@ -22,7 +22,7 @@ initSqlJs({locateFile:function(f){return "lib/"+f;}}).then(function(SQL){
   db.run("INSERT INTO products VALUES('Scratching post','250 UAH')");
   db.run("INSERT INTO products VALUES('Toy mouse','35 UAH')");
   db.run("CREATE TABLE secret(flag TEXT)");
-  db.run("INSERT INTO secret VALUES('kpi{union_select}')");
+  db.run("INSERT INTO secret VALUES('kpi{paws_on_the_secret_table}')");
 });
 function go(){
   if(!db)return;

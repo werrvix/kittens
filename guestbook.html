@@ -13,7 +13,7 @@ input{padding:8px;width:60%}button{padding:8px 16px}a{color:#2563eb}
 <div id="list"></div>
 <p style="color:#888;margin-top:30px">Hint: comments are saved and shown without any cleaning. A comment with an image error handler runs every time the page loads. There is a variable <code>flag</code> on this page.</p>
 <script>
-var flag="kpi{stored_xss}";
+var flag="kpi{nine_lives_in_your_tab}";
 function getC(){try{return JSON.parse(localStorage.getItem("gb")||"[]");}catch(e){return [];}}
 function render(){var c=getC(), h="";for(var i=0;i<c.length;i++) h+='<div class="c">'+c[i]+'</div>';document.getElementById("list").innerHTML=h;}
 function add(){var v=document.getElementById("t").value; if(!v)return;var c=getC(); c.push(v); localStorage.setItem("gb",JSON.stringify(c));document.getElementById("t").value=""; render();}
