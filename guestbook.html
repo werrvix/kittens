@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Task 5 — Guestbook</title>
+<style>body{font-family:sans-serif;max-width:600px;margin:40px auto;padding:0 16px}
+input{padding:8px;width:60%}button{padding:8px 16px}a{color:#2563eb}
+.c{background:#f3f3f3;border-radius:8px;padding:10px 12px;margin:8px 0}code{background:#eee;padding:1px 4px}</style>
+</head><body>
+<p><a href="index.html">&larr; menu</a></p>
+<h2>📖 Guestbook</h2>
+<input id="t" placeholder="Leave a comment..."><button onclick="add()">Post</button>
+<button onclick="clearAll()" style="background:#eee">Clear</button>
+<div id="list"></div>
+<p style="color:#888;margin-top:30px">Hint: comments are saved and shown without any cleaning. A comment with an image error handler runs every time the page loads. There is a variable <code>flag</code> on this page.</p>
+<script>
+var flag="kpi{stored_xss}";
+function getC(){try{return JSON.parse(localStorage.getItem("gb")||"[]");}catch(e){return [];}}
+function render(){var c=getC(), h="";for(var i=0;i<c.length;i++) h+='<div class="c">'+c[i]+'</div>';document.getElementById("list").innerHTML=h;}
+function add(){var v=document.getElementById("t").value; if(!v)return;var c=getC(); c.push(v); localStorage.setItem("gb",JSON.stringify(c));document.getElementById("t").value=""; render();}
+function clearAll(){localStorage.removeItem("gb");render();}
+render();
+</script></body></html>

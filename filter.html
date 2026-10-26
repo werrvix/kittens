@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Task 6 — Filtered greeting</title>
+<style>body{font-family:sans-serif;max-width:600px;margin:50px auto;padding:0 16px}
+input{padding:8px;width:220px}a{color:#2563eb}code{background:#eee;padding:1px 4px}</style>
+</head><body>
+<p><a href="index.html">&larr; menu</a></p>
+<h2>Greeting (protected)</h2>
+<form method="GET"><input name="name" placeholder="Your name"><button>Go</button></form>
+<div id="out"></div>
+<script>
+var flag="kpi{filter_bypass}";
+var name=new URLSearchParams(location.search).get("name");
+if(name){var clean=name.replace(/script/gi,"");document.write("<h3>Hello, "+clean+"!</h3>");}
+</script>
+<p style="color:#888;margin-top:30px">Hint: the word <code>script</code> is removed from your input. A plain &lt;script&gt; will not work. Use another tag with an event handler, or hide the word inside itself.</p>
+</body></html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Task 2 — Login</title>
+<style>body{font-family:sans-serif;max-width:420px;margin:50px auto;padding:0 16px}
+input{display:block;width:100%;padding:10px;margin:8px 0;box-sizing:border-box}
+button{padding:10px 20px}a{color:#2563eb}.msg{margin-top:14px}code{background:#eee;padding:1px 4px}</style>
+</head><body>
+<p><a href="index.html">&larr; menu</a></p>
+<h2>🔐 Admin login</h2>
+<input id="u" placeholder="Username"><input id="p" type="text" placeholder="Password">
+<button onclick="go()">Log in</button><div id="msg" class="msg"></div>
+<p style="color:#888;margin-top:30px">Hint: the password is secret, but the query is not safe. Try a single quote ' in the username.</p>
+<script src="lib/sql-wasm.js"></script>
+<script>
+var db=null;
+initSqlJs({locateFile:function(f){return "lib/"+f;}}).then(function(SQL){
+  db=new SQL.Database();
+  db.run("CREATE TABLE users(user TEXT,pass TEXT)");
+  db.run("INSERT INTO users VALUES('admin','S3cr3t_p@ss_9142')");
+});
+function go(){
+  if(!db)return;
+  var u=document.getElementById("u").value, p=document.getElementById("p").value;
+  var sql="SELECT user FROM users WHERE user='"+u+"' AND pass='"+p+"'";
+  var out=document.getElementById("msg");
+  try{var r=db.exec(sql); var rows=r.length?r[0].values:[];
+    if(rows.length) out.innerHTML="<b style='color:green'>Logged in as "+rows[0][0]+"</b><br>FLAG: <code>kpi{login_bypass}</code>";
+    else out.innerHTML="<span style='color:red'>Wrong username or password</span>";
+  }catch(e){out.innerHTML="<span style='color:red'>SQL error: "+e+"</span><br><code>"+sql+"</code>";}
+}
+</script></body></html>

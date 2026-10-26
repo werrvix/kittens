@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Task 1 — Search</title>
+<style>
+body{font-family:sans-serif;margin:0;background:#f0f2f5}
+header{background:#1a1a2e;color:#fff;padding:18px 24px}
+header h1{margin:0;font-size:22px}header a{color:#8ec5ff;font-size:14px;margin-left:10px}
+.search{padding:20px 24px;background:#fff;border-bottom:1px solid #ddd}
+.search input{padding:10px;width:260px;font-size:15px}
+.search button{padding:10px 18px;font-size:15px;cursor:pointer}
+.grid{display:flex;flex-wrap:wrap;gap:16px;padding:24px}
+.card{background:#fff;border-radius:8px;box-shadow:0 1px 4px #0002;width:240px;overflow:hidden}
+.card img{width:240px;height:240px;object-fit:cover;display:block}
+.hint{color:#888;padding:0 24px 20px}.msg{padding:24px;color:#888}
+</style></head><body>
+<header><h1>🐱 Kittens <a href="index.html">menu</a></h1></header>
+<div class="search"><input id="q" placeholder="Search..." onkeydown="if(event.key==='Enter')doSearch()"><button onclick="doSearch()">Search</button></div>
+<p class="hint">Hint: try typing a single quote ' in the search.</p>
+<div id="grid" class="grid"><p class="msg">Loading...</p></div>
+<script src="lib/sql-wasm.js"></script>
+<script>
+var MAX_MEMES=40, db=null;
+initSqlJs({locateFile:function(f){return "lib/"+f;}}).then(function(SQL){
+  db=new SQL.Database();
+  db.run("CREATE TABLE memes(title TEXT,img TEXT,visible INT)");
+  for(var i=1;i<=MAX_MEMES;i++) db.run("INSERT INTO memes VALUES(?,?,1)",["meme"+i,"memes/meme"+i+".jpg"]);
+  db.run("INSERT INTO memes VALUES('flag','FLAG',0)");
+  var q=new URLSearchParams(location.search).get("q");
+  if(q){document.getElementById("q").value=q;runSQL(q);} else runSQL("");
+}).catch(function(e){document.getElementById("grid").innerHTML="<p class='msg' style='color:red'>sql.js error: "+e+"</p>";});
+function doSearch(){runSQL(document.getElementById("q").value);}
+function runSQL(q){
+  if(!db)return;
+  var sql=q?"SELECT title,img FROM memes WHERE visible=1 AND title = '"+q+"'":"SELECT title,img FROM memes WHERE visible=1";
+  var rows;
+  try{var r=db.exec(sql);rows=r.length?r[0].values:[];}
+  catch(e){document.getElementById("grid").innerHTML="<p class='msg' style='color:red'>SQL error: "+e+"<br><code>"+sql+"</code></p>";return;}
+  for(var i=0;i<rows.length;i++) if(rows[i][1]==="FLAG"){showFlag();return;}
+  var h="";for(var j=0;j<rows.length;j++) h+='<div class="card"><img src="'+rows[j][1]+'" onerror="this.parentNode.remove()"></div>';
+  document.getElementById("grid").innerHTML=h||"<p class='msg'>Nothing found</p>";
+}
+function showFlag(){document.open();document.write('<!doctype html><meta charset="utf-8"><title>flag</title><div style="position:fixed;inset:0;background:#000;color:#0f0;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:34px">kpi{sqli_in_search}</div>');document.close();}
+</script></body></html>
