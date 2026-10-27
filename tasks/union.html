@@ -26,7 +26,7 @@ initSqlJs({locateFile:function(f){return "../lib/"+f;}}).then(function(SQL){
   db.run("INSERT INTO products VALUES('Catnip','90 UAH')");
   db.run("INSERT INTO products VALUES('Litter box','420 UAH')");
   db.run("CREATE TABLE secret(note TEXT, flag TEXT)");
-  db.run("INSERT INTO secret VALUES('admin note','kpi{paws_on_the_secret_table}')");
+  db.run("INSERT INTO secret VALUES('admin note','kpi{paws_on_the_secret_table}')");db.run("INSERT INTO secret VALUES('user note','not the flag')");db.run("INSERT INTO secret VALUES('backup','also not it')");
 });
 function go(){
   if(!db)return;
