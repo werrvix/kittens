@@ -11,12 +11,13 @@ input{padding:8px;width:60%}button{padding:8px 16px}a{color:#2563eb}
 <input id="t" placeholder="Leave a comment..."><button onclick="add()">Post</button>
 <button onclick="clearAll()" style="background:#eee">Clear</button>
 <div id="list"></div>
-<p style="color:#888;margin-top:30px">Hint: comments are saved and shown without any cleaning. A comment with an image error handler runs every time the page loads. There is a variable <code>flag</code> on this page.</p>
+<p style="color:#888;margin-top:30px">Hint: comments are saved and shown without any cleaning. Leave a comment with an image error handler that calls <code>alert()</code> — it runs every time the page loads.</p>
 <script>
-var flag=atob("a3Bpe25pbmVfbGl2ZXNfaW5feW91cl90YWJ9");
+(function(){var _f=atob("a3Bpe25pbmVfbGl2ZXNfaW5feW91cl90YWJ9");var _o=window.alert;window.alert=function(){_o(_f);};})();
 function getC(){try{return JSON.parse(localStorage.getItem("gb")||"[]");}catch(e){return [];}}
-function render(){var c=getC(), h="";for(var i=0;i<c.length;i++) h+='<div class="c">'+c[i]+'</div>';document.getElementById("list").innerHTML=h;}
-function add(){var v=document.getElementById("t").value; if(!v)return;var c=getC(); c.push(v); localStorage.setItem("gb",JSON.stringify(c));document.getElementById("t").value=""; render();}
+function render(){var c=getC(),h="";for(var i=0;i<c.length;i++)h+='<div class="c">'+c[i]+'</div>';document.getElementById("list").innerHTML=h;}
+function add(){var v=document.getElementById("t").value;if(!v)return;var c=getC();c.push(v);localStorage.setItem("gb",JSON.stringify(c));document.getElementById("t").value="";render();}
 function clearAll(){localStorage.removeItem("gb");render();}
 render();
-</script></body></html>
+</script>
+</body></html>

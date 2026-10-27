@@ -10,9 +10,9 @@ input{padding:8px;width:220px}a{color:#2563eb}code{background:#eee;padding:1px 4
 <form method="GET"><input name="name" placeholder="Your name"><button>Go</button></form>
 <div id="out"></div>
 <script>
-var flag=atob("a3Bpe3Rvb19xdWlja19mb3JfdGhlX2ZpbHRlcn0=");
-var name=new URLSearchParams(location.search).get("name");
-if(name){var clean=name.replace(/script/gi,"");document.write("<h3>Hello, "+clean+"!</h3>");}
+(function(){var _f=atob("a3Bpe3Rvb19xdWlja19mb3JfdGhlX2ZpbHRlcn0=");var _o=window.alert;window.alert=function(){_o(_f);};})();
+var nm=new URLSearchParams(location.search).get("name");
+if(nm){var clean=nm.replace(/script/gi,"");document.write("<h3>Hello, "+clean+"!</h3>");}
 </script>
-<p style="color:#888;margin-top:30px">Hint: the word <code>script</code> is removed from your input. A plain &lt;script&gt; will not work. Use another tag with an event handler, or hide the word inside itself.</p>
+<p style="color:#888;margin-top:30px">Hint: the word <code>script</code> is removed. A plain &lt;script&gt; will not work — use another tag with an event handler that calls <code>alert()</code>, or hide the word inside itself.</p>
 </body></html>

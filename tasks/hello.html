@@ -10,9 +10,9 @@ input{padding:8px;width:220px}a{color:#2563eb}code{background:#eee;padding:1px 4
 <form method="GET"><input name="name" placeholder="Your name"><button>Go</button></form>
 <div id="out"></div>
 <script>
-var flag=atob("a3Bpe2Ffd2lsZF9tZW93X2FwcGVhcmVkfQ==");
-var name=new URLSearchParams(location.search).get("name");
-if(name) document.write("<h3>Hello, "+name+"!</h3>");
+(function(){var _f=atob("a3Bpe2Ffd2lsZF9tZW93X2FwcGVhcmVkfQ==");var _o=window.alert;window.alert=function(){_o(_f);};})();
+var nm=new URLSearchParams(location.search).get("name");
+if(nm) document.write("<h3>Hello, "+nm+"!</h3>");
 </script>
-<p style="color:#888;margin-top:30px">Hint: your name is written to the page as-is. Put a script in the <code>?name=</code> part of the address. There is a variable <code>flag</code> on this page.</p>
+<p style="color:#888;margin-top:30px">Hint: your name is printed to the page as-is. Put a script in the <code>?name=</code> part of the address and make it run <code>alert()</code>.</p>
 </body></html>
