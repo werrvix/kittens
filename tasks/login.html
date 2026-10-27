@@ -25,7 +25,7 @@ function go(){
   var sql="SELECT user FROM users WHERE user='"+u+"' AND pass='"+p+"'";
   var out=document.getElementById("msg");
   try{var r=db.exec(sql); var rows=r.length?r[0].values:[];
-    if(rows.length) out.innerHTML="<b style='color:green'>Logged in as "+rows[0][0]+"</b><br>FLAG: <code>"+atob("a3Bpe21lb3dlZF9wYXN0X3RoZV9ndWFyZH0=")+"</code>";
+    if(rows.length) out.innerHTML="<b style='color:green'>Logged in as "+rows[0][0]+"</b><br><code>"+atob("a3Bpe21lb3dlZF9wYXN0X3RoZV9ndWFyZH0=")+"</code>";
     else out.innerHTML="<span style='color:red'>Wrong username or password</span>";
   }catch(e){out.innerHTML="<span style='color:red'>SQL error: "+e+"</span><br><code>"+sql+"</code>";}
 }
